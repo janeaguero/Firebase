@@ -59,21 +59,16 @@ trainData.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
   console.log(childSnapshot.val());
 
-  // Store everything into a variable.
+  // Store everything in a variable.
   var trainName = childSnapshot.val().name;
   var trainDestination = childSnapshot.val().destination;
   var trainFrequency = childSnapshot.val().frequency;
   var trainFirstTrain = childSnapshot.val().firstTrain;
 
-  // Calculate the minutes until arrival using hardcore math
-  // To calculate the minutes till arrival, take the current time in unix subtract the FirstTrain time
-  // and find the modulus between the difference and the frequency.
-  var differenceTimes = moment().diff(moment.unix(trainFirstTrain), "minutes");
-  var trainRemainder = moment().diff(moment.unix(trainFirstTrain), "minutes") % trainFrequency;
-  var trainMinutes = trainFrequency - trainRemainder;
+  // Calculate the minutes until arrival
 
-  // To calculate the arrival time, add the tMinutes to the currrent time
-  var trainArrival = moment().add(trainMinutes, "m").format("hh:mm A");
+
+  // add the trainMinutes to the current time
 
 
   // still need to add each train's data into the table in the html
